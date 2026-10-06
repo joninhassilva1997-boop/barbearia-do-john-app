@@ -27,6 +27,7 @@
 <section class="section admin" id="admin"><div class="wrap"><div class="title"><div class="eyebrow">Área da barbearia</div><h2>Painel de agendamentos</h2><p>Versão demonstrativa protegida por senha no navegador.</p></div><div class="panel"><div id="adminLogin"><input id="adminPass" type="password" placeholder="Senha"><button class="btn" onclick="loginAdmin()">Entrar</button><div class="notice">Senha de demonstração: <b>1234</b>. Isso não substitui autenticação de servidor em produção.</div></div><div id="adminArea" style="display:none"><button class="btn alt" onclick="clearRequests()">Limpar pedidos</button><div id="requests" class="status"></div></div></div></div></section></main>
 <footer id="contato"><div class="wrap">© 2026 Barbearia do John · Estilo, precisão e personalidade.</div></footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script>
+// Disponibilidade em tempo real + bloqueio de concorrência via Supabase.
 const sb = window.SUPABASE_CONFIG && !window.SUPABASE_CONFIG.url.includes("SEU-PROJETO")
   ? supabase.createClient(window.SUPABASE_CONFIG.url, window.SUPABASE_CONFIG.anonKey)
   : null;
