@@ -63,14 +63,27 @@ async function updateAvailableTimes(){
   if(!sb){timeSelect.innerHTML='<option value="">Erro na configuração</option>';return}
   const {data:booked,error}=await sb.rpc('get_booked_slots',{p_date:date});
   if(error){console.error(error);timeSelect.innerHTML='<option value="">Não foi possível carregar os horários</option>';return}
-  const available=allTimes.filter(time=>{const start=timeToMinutes(time),end=start+duration;return end<=closing&&!overlaps(start,end,booked||[])});
+  const bookedSlots=(booked||[]).map(item=>({
+    start_time:String(item.start_time||'').slice(0,5),
+    end_time:String(item.end_time||'').slice(0,5)
+  }));
+  const available=allTimes.filter(time=>{
+    const start=timeToMinutes(time),end=start+duration;
+    return end<=closing&&!overlaps(start,end,bookedSlots);
+  });
   if(!available.length){timeSelect.innerHTML='<option value="">Nenhum horário disponível</option>';return}
   timeSelect.innerHTML='<option value="">Selecione</option>';
-  available.forEach(time=>{const option=document.createElement('option');option.value=time;option.textContent=time;timeSelect.appendChild(option)});
+  available.forEach(time=>{
+    const option=document.createElement('option');
+    option.value=time;
+    option.textContent=time;
+    timeSelect.appendChild(option);
+  });
   timeSelect.disabled=false;
 }
 dateInput.addEventListener('change',updateAvailableTimes);
 serviceSelect.addEventListener('change',updateAvailableTimes);
+if(dateInput && serviceSelect && dateInput.value && serviceSelect.value) updateAvailableTimes();
 
 document.getElementById('bookingForm').addEventListener('submit',async e=>{
   e.preventDefault();
