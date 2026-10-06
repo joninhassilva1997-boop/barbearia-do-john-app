@@ -23,23 +23,88 @@
 <div class="service"><h3>Consultoria de estilo</h3><div class="price">Grátis</div><small>Ajuda para escolher corte e estilo de acordo com seu objetivo.</small></div>
 </div></div></section>
 <section class="section" id="cortes"><div class="wrap"><div class="title"><div class="eyebrow">Inspiração</div><h2>Escolha seu próximo corte</h2><p>Galeria baseada nas referências enviadas.</p></div><div class="gallery"><img src="assets/corte-1.png"><img src="assets/corte-2.png"><img src="assets/corte-3.png"><img src="assets/corte-4.png"><img src="assets/corte-5.png"><img src="assets/corte-6.png"><img src="assets/corte-7.png"><img src="assets/corte-8.png"><img src="assets/corte-9.png"><img src="assets/corte-10.png"></div></div></section>
-<section class="section" id="agendar"><div class="wrap"><div class="title"><div class="eyebrow">Reserve seu horário</div><h2>Faça seu pedido de agendamento</h2><p>Você envia o pedido e a barbearia confirma depois.</p></div><div class="booking"><div class="panel info"><h3>Atendimento com hora marcada</h3><p>Escolha o serviço, a data e o horário de preferência. Após enviar, seu pedido ficará como <b>aguardando confirmação</b>.</p><div class="contact"><b>WhatsApp</b><br><span>(82) 99800-2275</span></div><div class="contact"><b>Endereço</b><br><span>Residencial Oiticica 2 — Bloco L2 — Ap 008</span></div><div class="contact"><b>Funcionamento</b><br><span>Ter–Sáb · 09h às 20h · Dom · 09h às 17h</span></div></div><form class="panel" id="bookingForm"><div class="formgrid"><label>Seu nome<input required name="name" placeholder="Nome completo"></label><label>WhatsApp<input required name="phone" placeholder="(82) 99800-2275"></label><label>Serviço<select required name="service"><option value="">Selecione</option><option>Corte masculino</option><option>Barba</option><option>Corte + Barba</option><option>Luzes</option><option>Selagem</option><option>Alisamento</option><option>Platinado</option><option>Acabamento</option></select></label><label>Data<input required type="date" name="date"></label><label>Horário<select required name="time"><option value="">Selecione</option><option>09:00</option><option>10:00</option><option>11:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option></select></label><label>Referência<input name="reference" placeholder="Ex.: Mid Fade, Mullet..." ></label><label class="full">Observações<textarea name="notes" placeholder="Algum detalhe sobre o corte ou procedimento?"></textarea></label><div class="full"><button class="btn" type="submit">Enviar pedido de agendamento</button><div class="notice">Seu pedido será salvo neste dispositivo nesta versão demonstrativa. Para receber pedidos de clientes de verdade, conectaremos um banco de dados/WhatsApp na próxima etapa.</div><div id="result"></div></div></div></form></div></div></section>
+<section class="section" id="agendar"><div class="wrap"><div class="title"><div class="eyebrow">Reserve seu horário</div><h2>Faça seu pedido de agendamento</h2><p>Você envia o pedido e a barbearia confirma depois.</p></div><div class="booking"><div class="panel info"><h3>Atendimento com hora marcada</h3><p>Escolha o serviço, a data e o horário de preferência. Após enviar, seu pedido ficará como <b>aguardando confirmação</b>.</p><div class="contact"><b>WhatsApp</b><br><span>(82) 99800-2275</span></div><div class="contact"><b>Endereço</b><br><span>Residencial Oiticica 2 — Bloco L2 — Ap 008</span></div><div class="contact"><b>Funcionamento</b><br><span>Ter–Sáb · 09h às 20h · Dom · 09h às 17h</span></div></div><form class="panel" id="bookingForm"><div class="formgrid"><label>Seu nome<input required name="name" placeholder="Nome completo"></label><label>WhatsApp<input required name="phone" placeholder="(82) 99800-2275"></label><label>Serviço<select required name="service"><option value="">Selecione</option><option>Corte masculino</option><option>Barba</option><option>Corte + Barba</option><option>Luzes</option><option>Selagem</option><option>Alisamento</option><option>Platinado</option><option>Acabamento</option></select></label><label>Data<input required type="date" name="date"></label><label>Horário<select required name="time"><option value="">Selecione</option><option>09:00</option><option>10:00</option><option>11:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option></select></label><label>Referência<input name="reference" placeholder="Ex.: Mid Fade, Mullet..." ></label><label class="full">Observações<textarea name="notes" placeholder="Algum detalhe sobre o corte ou procedimento?"></textarea></label><div class="full"><button class="btn" type="submit">Enviar pedido de agendamento</button><div class="notice">Seu pedido será enviado para a barbearia e o horário ficará bloqueado enquanto aguarda confirmação.</div><div id="result"></div></div></div></form></div></div></section>
 <section class="section admin" id="admin"><div class="wrap"><div class="title"><div class="eyebrow">Área da barbearia</div><h2>Painel de agendamentos</h2><p>Versão demonstrativa protegida por senha no navegador.</p></div><div class="panel"><div id="adminLogin"><input id="adminPass" type="password" placeholder="Senha"><button class="btn" onclick="loginAdmin()">Entrar</button><div class="notice">Senha de demonstração: <b>1234</b>. Isso não substitui autenticação de servidor em produção.</div></div><div id="adminArea" style="display:none"><button class="btn alt" onclick="clearRequests()">Limpar pedidos</button><div id="requests" class="status"></div></div></div></div></section></main>
 <footer id="contato"><div class="wrap">© 2026 Barbearia do John · Estilo, precisão e personalidade.</div></footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script>
-const sb = window.SUPABASE_CONFIG && !window.SUPABASE_CONFIG.url.includes("SEU-PROJETO") ? supabase.createClient(window.SUPABASE_CONFIG.url, window.SUPABASE_CONFIG.anonKey) : null;
+const sb = window.SUPABASE_CONFIG && !window.SUPABASE_CONFIG.url.includes("SEU-PROJETO")
+  ? supabase.createClient(window.SUPABASE_CONFIG.url, window.SUPABASE_CONFIG.anonKey)
+  : null;
+
 const key='john_barber_requests';
 function getRequests(){return JSON.parse(localStorage.getItem(key)||'[]')}
-function renderRequests(){const r=getRequests();const el=document.getElementById('requests');el.innerHTML=r.length?r.map((x,i)=>`<div class="request"><strong>#${i+1} · ${x.date} às ${x.time}</strong><br>${x.name} · ${x.phone}<br><b>${x.service}</b>${x.reference?' · '+x.reference:''}<br>${x.notes||'Sem observações.'}</div>`).join(''):'Nenhum pedido recebido ainda.'}
+function renderRequests(){
+  const r=getRequests(),el=document.getElementById('requests');
+  if(!el)return;
+  el.innerHTML=r.length?r.map((x,i)=>`<div class="request"><strong>#${i+1} · ${x.date} às ${x.time}</strong><br>${x.name} · ${x.phone}<br><b>${x.service}</b>${x.reference?' · '+x.reference:''}<br>${x.notes||'Sem observações.'}</div>`).join(''):'Nenhum pedido recebido ainda.'
+}
 function loginAdmin(){if(document.getElementById('adminPass').value==='1234'){document.getElementById('adminLogin').style.display='none';document.getElementById('adminArea').style.display='block';renderRequests()}else alert('Senha incorreta.')}
 function clearRequests(){if(confirm('Apagar todos os pedidos deste dispositivo?')){localStorage.removeItem(key);renderRequests()}}
-document.getElementById('bookingForm').addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(e.target);const obj=Object.fromEntries(f.entries());const start=obj.time+':00';const duration=['Luzes','Selagem','Alisamento','Platinado'].includes(obj.service)?120:60;const endDate=new Date('1970-01-01T'+start);endDate.setMinutes(endDate.getMinutes()+duration);const end=endDate.toTimeString().slice(0,8);const result=document.getElementById('result');if(!sb){result.innerHTML='<div class="status">Para ativar o agendamento online, finalize a configuração do Supabase no arquivo config.js.</div>';return}result.innerHTML='<div class="status">Enviando...</div>';const {error}=await sb.from('bookings').insert({customer_name:obj.name,phone:obj.phone,service:obj.service,booking_date:obj.date,start_time:start,end_time:end,reference:obj.reference||null,notes:obj.notes||null,status:'pending'});if(error){result.innerHTML='<div class="status">Não foi possível enviar: '+error.message+'</div>';return}const msg=encodeURIComponent('Olá! Quero solicitar um agendamento na Barbearia do John.
-Nome: '+obj.name+'
-Serviço: '+obj.service+'
-Data: '+obj.date+'
-Horário: '+obj.time+'
-WhatsApp: '+obj.phone);window.open('https://wa.me/5582998002275?text='+msg,'_blank');result.innerHTML='<div class="status">✓ Pedido enviado! A barbearia irá confirmar seu horário.</div>';e.target.reset()});
-const d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());document.querySelector('input[type=date]').min=d.toISOString().slice(0,10);
-if(location.hash==='#admin'){document.getElementById('admin').classList.add('show')}
+
+const timeSelect=document.querySelector('select[name="time"]');
+const dateInput=document.querySelector('input[name="date"]');
+const serviceSelect=document.querySelector('select[name="service"]');
+const allTimes=['09:00','10:00','11:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00'];
+
+function timeToMinutes(time){const [h,m]=time.split(':').map(Number);return h*60+m}
+function serviceDuration(){return ['Luzes','Selagem','Alisamento','Platinado'].includes(serviceSelect.value)?120:60}
+function getClosingMinutes(dateString){const day=new Date(dateString+'T12:00:00').getDay();if(day===1)return null;return day===0?1020:1200}
+function overlaps(start,end,booked){return booked.some(item=>{const bs=timeToMinutes(item.start_time),be=timeToMinutes(item.end_time);return start<be&&end>bs})}
+
+async function updateAvailableTimes(){
+  if(!timeSelect||!dateInput||!serviceSelect)return;
+  const date=dateInput.value,duration=serviceDuration();
+  timeSelect.innerHTML='<option value="">Carregando horários...</option>';
+  timeSelect.disabled=true;
+  if(!date){timeSelect.innerHTML='<option value="">Selecione a data primeiro</option>';timeSelect.disabled=false;return}
+  const closing=getClosingMinutes(date);
+  if(closing===null){timeSelect.innerHTML='<option value="">Fechado neste dia</option>';return}
+  if(!sb){timeSelect.innerHTML='<option value="">Erro na configuração</option>';return}
+  const {data:booked,error}=await sb.rpc('get_booked_slots',{p_date:date});
+  if(error){console.error(error);timeSelect.innerHTML='<option value="">Não foi possível carregar os horários</option>';return}
+  const available=allTimes.filter(time=>{const start=timeToMinutes(time),end=start+duration;return end<=closing&&!overlaps(start,end,booked||[])});
+  if(!available.length){timeSelect.innerHTML='<option value="">Nenhum horário disponível</option>';return}
+  timeSelect.innerHTML='<option value="">Selecione</option>';
+  available.forEach(time=>{const option=document.createElement('option');option.value=time;option.textContent=time;timeSelect.appendChild(option)});
+  timeSelect.disabled=false;
+}
+dateInput.addEventListener('change',updateAvailableTimes);
+serviceSelect.addEventListener('change',updateAvailableTimes);
+
+document.getElementById('bookingForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const f=new FormData(e.target),obj=Object.fromEntries(f.entries()),result=document.getElementById('result');
+  if(!obj.date||!obj.time||!obj.service){alert('Escolha a data, o serviço e um horário disponível.');return}
+  if(!sb){result.innerHTML='<div class="status">Para ativar o agendamento online, finalize a configuração do Supabase no arquivo config.js.</div>';return}
+  const duration=serviceDuration(),start=obj.time+':00',endDate=new Date('1970-01-01T'+start);
+  endDate.setMinutes(endDate.getMinutes()+duration);
+  const end=endDate.toTimeString().slice(0,8);
+  result.innerHTML='<div class="status">Verificando disponibilidade...</div>';
+  const {data:latestBooked,error:checkError}=await sb.rpc('get_booked_slots',{p_date:obj.date});
+  if(checkError){result.innerHTML='<div class="status">Não foi possível verificar a disponibilidade. Tente novamente.</div>';return}
+  if(overlaps(timeToMinutes(obj.time),timeToMinutes(obj.time)+duration,latestBooked||[])){
+    result.innerHTML='<div class="status">⚠️ Esse horário acabou de ser ocupado. Escolha outro horário.</div>';
+    await updateAvailableTimes();return
+  }
+  result.innerHTML='<div class="status">Enviando...</div>';
+  const {error}=await sb.from('bookings').insert({customer_name:obj.name,phone:obj.phone,service:obj.service,booking_date:obj.date,start_time:start,end_time:end,reference:obj.reference||null,notes:obj.notes||null,status:'pending'});
+  if(error){
+    const msg=(error.message||'').toLowerCase();
+    if(error.code==='23P01'||msg.includes('overlap')||msg.includes('bookings_no_overlap')){
+      result.innerHTML='<div class="status">⚠️ Esse horário acabou de ser ocupado por outro cliente. Escolha outro horário.</div>';
+      await updateAvailableTimes();return
+    }
+    result.innerHTML='<div class="status">Não foi possível enviar: '+error.message+'</div>';return
+  }
+  const msg=encodeURIComponent('Olá! Quero solicitar um agendamento na Barbearia do John.\nNome: '+obj.name+'\nServiço: '+obj.service+'\nData: '+obj.date+'\nHorário: '+obj.time+'\nWhatsApp: '+obj.phone);
+  window.open('https://wa.me/5582998002275?text='+msg,'_blank');
+  result.innerHTML='<div class="status">✓ Pedido enviado! A barbearia irá confirmar seu horário.</div>';
+  e.target.reset();
+  timeSelect.innerHTML='<option value="">Selecione a data primeiro</option>';
+  timeSelect.disabled=false;
+});
+const d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());
+if(dateInput)dateInput.min=d.toISOString().slice(0,10);
+if(location.hash==='#admin')document.getElementById('admin').classList.add('show');
 </script>
 </body></html>
